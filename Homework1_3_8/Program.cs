@@ -13,22 +13,19 @@ namespace Homework1_3_8
             int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
             Console.Write("Введите сдвиг влево: ");
             int shiftLeft = Convert.ToInt32(Console.ReadLine());
-            shiftLeft = shiftLeft % array.Length;
-            int [] tempForChange = new int[shiftLeft];
+            shiftLeft %=array.Length;
+            int firstIndex = 0;
 
-            for (int arrayIndex = 0; arrayIndex < shiftLeft; arrayIndex++)
+            for (int shift=0; shift<shiftLeft;shift++)
             {
-                tempForChange[arrayIndex] = array[arrayIndex];
-            }
+                int firstElement = array[firstIndex];
 
-            for (int arrayIndex= 0; arrayIndex<array.Length- shiftLeft; arrayIndex++)
-            {
-                array[arrayIndex] = array[arrayIndex+ shiftLeft];
-            }
+                for (int arrayIndex=0; arrayIndex<array.Length-1; arrayIndex++)
+                {
+                    array[arrayIndex] = array[arrayIndex + 1];
+                }
 
-            for (int arrayIndex = array.Length - shiftLeft; arrayIndex < array.Length; arrayIndex++)
-            {
-                array[arrayIndex] = tempForChange[arrayIndex - (array.Length - shiftLeft)];
+                array[array.Length - 1] = firstElement;
             }
 
             for (int arrayIndex = 0; arrayIndex < array.Length; arrayIndex++)
